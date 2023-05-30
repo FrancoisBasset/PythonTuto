@@ -53,3 +53,16 @@ def even_or_not() :
             continue
 
         print("Found an odd number", num)
+
+def print_char(c: str, n: int = 1, end: str = ""):
+    """Print char n times"""
+    print(f"{c * n}{end}")
+
+def say(volume: int=50, luminosity: int=20, battery: int=10, month: str="January"):
+    print("Volume {}\nLuminosity {}\nBattery {}\nMonth {}\n".format(volume, luminosity, battery, month))
+
+def params(name, *ps1, **ps2):
+    """print"""
+    print(name)
+    print(ps1)
+    print(ps2)
