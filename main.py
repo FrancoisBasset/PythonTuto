@@ -7,6 +7,7 @@ from controls.testmatch import find_language, find_point, find_color
 from classes.point import Point
 from classes.color import Color
 from controls.math import *
+from files import file
 
 def ok():
     pass
@@ -114,3 +115,6 @@ if __name__ == "__main__":
     print("Somme :", somme(5, 9))
 
     print("Square :", square(8))
+
+    file.test_pickle_dump()
+    file.test_pickle_load()
