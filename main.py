@@ -8,6 +8,7 @@ from classes.point import Point
 from classes.color import Color
 from controls.math import *
 from files import file
+from classes.not_equals_error import NotEqualsError
 
 def ok():
     pass
@@ -39,6 +40,37 @@ def sep(a, b):
 
 somme = lambda a, b : a + b
 square = lambda a : a * a
+
+def fails():
+    return 1 / 0
+
+def notEquals(x, y):
+    if (x == y):
+        raise NotEqualsError
+    
+    print(x * y)
+
+def bool_return():
+    try:
+        return True
+    finally:
+        return False
+    
+def divide2(x, y):
+    try:
+        result = x / y
+    except ZeroDivisionError:
+        print("division by zero!")
+    except TypeError:
+        print("Bad type")
+    else:
+        print("result is", result)
+    finally:
+        print("executing finally clause")
+
+def group():
+    excs = [OSError('error 1'), SystemError('error 2')]
+    raise ExceptionGroup('there were problems', excs)
 
 if __name__ == "__main__":
     compare(-5)
@@ -118,3 +150,61 @@ if __name__ == "__main__":
 
     file.test_pickle_dump()
     file.test_pickle_load()
+
+    try:
+        print(1 / 0)
+    except ZeroDivisionError:
+        print("NNNOOONNNN !!!")
+    try:
+        print(fsfbsfdsb)
+    except NameError:
+        print("Existe pas !!")
+
+    try:
+        print("2" + 2)
+    except TypeError:
+        print("Pas compatible !!")
+
+    while True:
+        try:
+            x = int(input("Please enter a number: "))
+            fails()
+        except ValueError as e:
+            print("Oops!  That was no valid number.  Try again...")
+        except (KeyboardInterrupt, EOFError, ZeroDivisionError):
+            break
+        else:
+            print("Merci !")
+            break
+    
+    try:
+        notEquals(5, 5)
+    except NotEqualsError as e:
+        print(e)
+
+    try:
+        print(1 / 1)
+        print("C'est bon")
+    finally:
+        print("C'est pas bon")
+
+    print(bool_return())
+
+    divide2(5, 2)
+    divide2(5, 0)
+    divide2("2", "1")
+
+    try:
+        group()
+    except Exception as e:
+        print(f'caught {type(e)}: e')
+
+    try:
+        group()
+    except* OSError as e:
+        e.add_note("There were OSErrors")
+        print(e)
+    except* SystemError as e:
+        e.add_note("There were SystemErrors")
+        print(e)
+
