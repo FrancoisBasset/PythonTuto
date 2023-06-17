@@ -210,3 +210,5 @@ if __name__ == "__main__":
         print(e)
 
     import theclasses
+    import standard
+    
