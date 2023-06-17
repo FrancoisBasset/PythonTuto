@@ -167,7 +167,8 @@ if __name__ == "__main__":
 
     while True:
         try:
-            x = int(input("Please enter a number: "))
+            x = 4
+            #int(input("Please enter a number: "))
             fails()
         except ValueError as e:
             print("Oops!  That was no valid number.  Try again...")
@@ -208,3 +209,4 @@ if __name__ == "__main__":
         e.add_note("There were SystemErrors")
         print(e)
 
+    import theclasses
